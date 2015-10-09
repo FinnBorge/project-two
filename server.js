@@ -1,12 +1,17 @@
 var express = require('express'),
     PORT = process.env.PORT || 3000,
-    server = express();
+    server = express(),
+    MONGOURI = process.env.MONGOLAB_URI,
+    dbname = "please_change_this", 
+    mongoose = require('mongoose');
 
 server.get('/super-secret-test', function(req, res){
   res.write("Welcome to my amazing app");
   res.end();
 });
 
+mongoose.connect(MONGOURI + "/" + dbname);
+
 server.listen(PORT, function(){
   console.log("SERVER IS UP ON PORT:", PORT);
-})
+});
