@@ -39,7 +39,9 @@ server.use('/user', userRouter);
 mongoose.connect(MONGOURI + "/" + dbname);
 
 /* Routes */
-//need a default Route
+server.get('/', function(req, res, next){
+  res.render('article/index', {});
+});
 
 
 server.listen(PORT, function(){

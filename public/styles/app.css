@@ -1,4 +1,8 @@
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+    HEADER styling start
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 ul {
+  padding: 0px;
   list-style: none;
 }
 
@@ -6,9 +10,74 @@ li {
   display: inline-block;
 }
 
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+header span{
+  display: inline-block;
+}
+
+header h1{
+  display: inline-block;
+}
+
+header ul {
+  display: inline-block;
+}
+
+/* Large */
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  /* This aligns items to the end line on main-axis */
+  justify-content: flex-end;
+}
+
+/* Medium screens */
+@media all and (max-width: 800px) {
+  .navigation {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .navigation {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+    HEADER styling end
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      MAIN styling start
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+body {
+  background-color: white;
+}
 
 
-/*This is all styling for the input form*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      MAIN styling end
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+
+
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      FORM styling start
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 input[type="radio"], input[type="checkbox"] {
   display: none;
 }
@@ -61,3 +130,6 @@ form {
   margin: 0 auto;
   margin-top: 80px;
 }
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      FORM styling end
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */

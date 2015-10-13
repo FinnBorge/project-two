@@ -1,18 +1,19 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
-var categories = [
-  ''
-];
+//{type: String, enum: categories}
+// var categories = [
+//   ''
+// ];
 
 var articleSchema = new Schema({
   author: String,
   title: {type: String, index: { unique: true }},
   date: { type: Date, default: Date.now },
   updated: Date,
-  body: {},
+  body: String,
   comments: [{ body: String, date: Date }],
-  category: {type: String, enum: categories},
+  category: String,
   tags: [String],
   meta: {
     upvotes: Number,
