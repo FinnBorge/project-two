@@ -4,11 +4,10 @@
 
     <h3>Login Credentials</h3>
       <input type="email" class="form-control" name="user[email]" placeholder="Email address"/>
-      <input type="password" class="form-control" name="user[password][]" placeholder="password" id="pw1"/>
+      <input type="password" class="form-control" name="user[password]" placeholder="password" id="pw1"/>
       <!-- on blur if these are equivalent then make it green
            grab them by and evaluate their .val
          onblur="function(){if(pw2=/=pw1){$(#pw2).css(background-color:red)}}"-->
-      <input type="password" class="form-control" name="user[password][]" placeholder="confirm password" id="pw2"/>
       <input type="text" class="form-control" name="user[name]" placeholder="Username"/>
       <input type="text" class="form-control" name="user[location]" placeholder="Location"/>
   </div>

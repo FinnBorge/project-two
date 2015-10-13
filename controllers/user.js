@@ -9,6 +9,7 @@ router.get('/new', function(req, res, next){
 });
 
 router.post('/', function(req, res){
+  console.log(req.body);
   var newUser = new User({
     name: req.body.user.name,
     email: req.body.user.email,
@@ -18,16 +19,16 @@ router.post('/', function(req, res){
   newUser.save(function(err, user){
     if(err){
       console.log(err);
+      res.redirect(302, '/user/new');
     } else {
-      req.session.id = user._id;
-      res.redirect(302, '/user/' + user._id);
-      console.log("save complete");
+      req.session.user = user;
+      res.redirect(302, '/user/' + req.session.user._id);
     }
   });
-  //creation of the user
 });
 
-router.get('/:id', function(req, res, next){
+router.get('/view', function(req, res, next){
+  console.log("MADE IT");
   res.render('user/view');
 });
 

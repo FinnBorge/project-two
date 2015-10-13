@@ -1,9 +1,9 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
-function toLower (v) {
+var toLower = function (v) {
   return v.toLowerCase();
-}
+};
 
 var userSchema = new Schema({
   name: String ,

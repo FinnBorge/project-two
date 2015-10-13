@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
   // article create action + REDIRECT
   console.log(req.body);
 
-  Cat.new(req.body.cat, function (err, newCat) {
+  Article.new(req.body.cat, function (err, newCat) {
     if (err) {
       res.redirect(302, '/cats/new');
     } else {
