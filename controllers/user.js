@@ -25,16 +25,24 @@ router.post('/', function(req, res){
       /* failed user creation, add flash */
     } else {
       req.session.user = user;
-      res.redirect(302, '/user/view' + req.session.user._id);
+      res.redirect(302, '/user/view/' + user._id);
       /* successful user creation, view new user page */
     }
   });
 });
 
 /* View a particular user :: special permissions if its the current user */
-router.get('/view', function(req, res, next){
+router.get('/view/:id', function(req, res, next){
   console.log("MADE IT");
-  res.render('user/view');
+  User.findById(req.params.id, function(err, dbuser){
+      if(err){
+        console.log("user.findbyid error");
+      } else {
+        res.render('user/view', {
+          user: dbuser
+        });
+      }
+    });
 });
 
 /* View the login form */
@@ -58,7 +66,7 @@ router.post('/login', function(req, res, next){
     } else if (password === dbuser.password){
       console.log("Log-in successful");
       req.session.user = dbuser; //hide pw
-      res.redirect(302, '/user/view');
+      res.redirect(302, '/user/view/' + dbuser._id);
     } else {
       console.log("email and password do not match");
       //track attempts?
