@@ -18,38 +18,42 @@ router.get('/new', function (req, res) {
 /* Handle incoming user creation form data */
 router.post('/', function(req, res){
   console.log(req.body);
-  var newArticle = new Article({
-    title: req.body.article.title,
-    body: req.body.user.email,
-    password: req.body.user.password,
-    location: req.body.user.location,
-  });
-  newUser.save(function(err, user){
-    if(err){
-      console.log(err);
-      res.redirect(302, '/user/new');
-      /* failed user creation, add flash */
-    } else {
-      req.session.user = user;
-      res.redirect(302, '/user/view' + req.session.user._id);
-      /* successful user creation, view new user page */
-    }
-  });
+  if(req.session.user){
+    var newArticle = new Article({
+      title: req.body.article.title,
+      body: req.body.article.body,
+      category: req.body.article.category,
+      tags: req.body.article.tags
+    });
+    newArticle.save(function(err, article){
+      if(err){
+        console.log(err);
+        res.redirect(302, '/article/new');
+        /* failed article creation, add flash */
+      } else {
+        res.redirect(302, '/article/view/' + article._id);
+        /* successful article creation, view new article page */
+      }
+    });
+  } else {
+    res.redirect(302, 'user/login');
+  }
 });
 
-router.get('/:id', function (req, res) {
+router.get('view/:id', function (req, res) {
   // show particular article
+  console.log("You've hit the article + ID page");
 });
 
-router.get('/:id/edit', function (req, res) {
+router.get('view/:id/edit', function (req, res) {
   // edit article action
 });
 
-router.patch('/:id', function (req, res) {
+router.patch('view/:id', function (req, res) {
   // update article action REDIRECT
 });
 
-router.delete('/:id', function (req, res) {
+router.delete('view/:id', function (req, res) {
   // delete article action + REDIRECT  --  ADMIN ONLY
 });
 
