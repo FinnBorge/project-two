@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/app.css" media="screen" title="no title" charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>Finns Wiki</title>
+  </head>
+  <body>
+    <h1>Hello <%= user ? user : 'Guest' %> </h1>
+    <%- include header %>
+    <%- body %>
+    <%- include footer %>
+
+    <script src="/scripts/app.js"></script>
+  </body>
+</html>

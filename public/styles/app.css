@@ -1,0 +1,53 @@
+/*This is all styling for the input form*/
+input[type="radio"], input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  border: 1px solid black;
+  padding: 5px;
+  font-size: 12px;
+  margin-left: 3px;
+  transition: .3s;
+}
+
+input[type="radio"]:checked + label {
+  background-color:darkgreen;
+  color: white;
+  transform: scale(1.2,1.2);
+}
+
+input[type="checkbox"]:checked + label{
+  background-color:steelblue;
+  transform: rotate(900deg);
+}
+
+input[type="text"], input[type="password"]{
+  padding: 5px;
+  margin: 5px;
+  background-color: lightgray;
+  border: 1px solid black;
+  max-width: 600px;
+  transition: .5s
+}
+
+input[type="text"]:focus{
+  transform: scale(2,2);
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+input[type="submit"]{
+  margin-left: 5px;
+}
+
+div.form-group {
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 80px;
+}
