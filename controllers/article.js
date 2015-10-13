@@ -56,9 +56,19 @@ router.get('/view/:id', function (req, res) {
 });
 
 router.get('view/:id/edit', function (req, res) {
-  // edit article action
+  Article.findById(req.params.id, function(err, article){
+    if(err){
+      console.log("Error");
+      res.redirect(302, '/view/' + req.params.id);
+    }else{
+      res.render('article/edit', {
+          article: article
+      });
+    }
+  });
 });
 
+/* method override sends the post ?_method="PATCH" to this */
 router.patch('view/:id', function (req, res) {
   // update article action REDIRECT
 });
