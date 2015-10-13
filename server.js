@@ -11,7 +11,8 @@ var express  = require('express'),
     expressLayouts = require('express-ejs-layouts'),
     marked = require('marked'),
     session = require('express-session'),
-    User = require('./models/user.js');
+    User = require('./models/user.js'),
+    bcrypt = require('bcryptjs');
     //bcrypt = require('bcrypt');
 
 /* middleware */
