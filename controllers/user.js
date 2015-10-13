@@ -1,6 +1,6 @@
 var express = require('express'),
     router  = express.Router(),
-    Article = require('./models/user.js');
+    User = require('../models/user.js');
 
 router.get('/user/new', function(req, res, next){
   res.locals.user = undefined;
@@ -10,3 +10,5 @@ router.get('/user/new', function(req, res, next){
 router.post('/user', function(req, res){
   //creation of the user
 });
+
+module.exports = router;

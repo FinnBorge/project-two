@@ -1,9 +1,13 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
+function toLower (v) {
+  return v.toLowerCase();
+}
+
 var userSchema = new Schema({
   name: String ,
-  email: { type: String, set: toLower, index: { unique: true }, validate: /\u0040/ } ,
+  email: { type: String, index: { unique: true }, validate: /\u0040/,  set: toLower} ,
   password: String,
   dateCreated: { type: Date, default: Date.now },
   location: { type: String, set: toLower } ,
@@ -13,7 +17,7 @@ var userSchema = new Schema({
   trusted: Boolean,
 });
 
-articleSchema.methods.findMyArticles = function (callback) {
+userSchema.methods.findMyArticles = function (callback) {
   return this.model('User').find({ author: this.name }, callback);
 };
 

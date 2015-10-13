@@ -38,7 +38,9 @@ mongoose.connect(MONGOURI + "/" + dbname);
 
 /* Routes */
 server.get('/welcome', function(req, res, next){
-  res.render('welcome'); //contains the user name input form
+  res.render('welcome', {
+    user: "Finn"
+  }); //contains the user name input form
 });
 
 server.post('/welcome', function(req, res, next){

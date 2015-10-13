@@ -24,7 +24,7 @@ input[type="checkbox"]:checked + label{
   transform: rotate(900deg);
 }
 
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"], input[type="email"]{
   padding: 5px;
   margin: 5px;
   background-color: lightgray;
@@ -33,7 +33,7 @@ input[type="text"], input[type="password"]{
   transition: .5s
 }
 
-input[type="text"]:focus{
+input[type="text"]:focus, input[type="email"]:focus{
   transform: scale(2,2);
   margin-top: 25px;
   margin-bottom: 25px;

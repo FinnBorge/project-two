@@ -1,6 +1,6 @@
 var express = require('express'),
     router  = express.Router(),
-    Article = require('./models/article.js');
+    Article = require('../models/article.js');
 
 router.get('/', function (req, res) {
   Article.find({}, function (err, allArticles) {
