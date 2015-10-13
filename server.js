@@ -10,8 +10,8 @@ var express  = require('express'),
     ejs = require('ejs'),
     expressLayouts = require('express-ejs-layouts'),
     marked = require('marked'),
-    expSession = require('express-session'),
-    bcrypt = require('bcrypt');
+    session = require('express-session');
+    //bcrypt = require('bcrypt');
 
 /* middleware */
 server.set('views', './views');

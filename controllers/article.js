@@ -29,19 +29,19 @@ router.post('/', function (req, res) {
 });
 
 router.get('/:id', function (req, res) {
-  // CAT show page
+  // show particular article
 });
 
 router.get('/:id/edit', function (req, res) {
-  // CAT edit FORM page
+  // edit article action
 });
 
 router.patch('/:id', function (req, res) {
-  // CAT update action + REDIRECT
+  // update article action REDIRECT
 });
 
 router.delete('/:id', function (req, res) {
-  // CAT delete action + REDIRECT
+  // delete article action + REDIRECT  --  ADMIN ONLY
 });
 
 module.exports = router;
