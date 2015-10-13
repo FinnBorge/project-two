@@ -39,7 +39,7 @@ mongoose.connect(MONGOURI + "/" + dbname);
 /* Routes */
 server.get('/welcome', function(req, res, next){
   res.render('welcome', {
-    user: "Finn"
+    user: res.locals.user
   }); //contains the user name input form
 });
 
@@ -47,12 +47,7 @@ server.post('/welcome', function(req, res, next){
   /*find the user based on their entered username.
   test the password against db password
   **make username unique in the create profile */
-  res.redirect(302, '/');
-});
-
-server.get('/test', function(req, res){
-  res.write("Wiki Test");
-  res.end();
+  res.redirect(302, '/user/' + req.body.user._id);
 });
 
 server.listen(PORT, function(){
