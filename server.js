@@ -39,34 +39,8 @@ server.use('/user', userRouter);
 mongoose.connect(MONGOURI + "/" + dbname);
 
 /* Routes */
-server.get('/welcome', function(req, res, next){
-  res.render('welcome', {
-    name: res.locals.name || req.body.name
-  }); //contains the user name input form
-});
+//need a default Route
 
-server.post('/welcome', function(req, res, next){
-  var email = req.body.user.email.toLowerCase();
-  var password = req.body.user.password;
-  console.log(req.body.user);
-  User.findOne({email: email}, function(err, dbuser){
-    console.log(dbuser);
-    if(err){
-      res.redirect(302, '/welcome');//flash error
-    } else if (password === dbuser.password){
-      console.log("Log-in successful");
-      req.session.user = dbuser; //hide pw
-      res.redirect(302, '/user/view');
-    } else {
-      console.log("email and password do not match");
-      //track attempts?
-    }
-  });
-  /*find the user based on their entered username.
-  test the password against db password
-  **make username unique in the create profile */
-  //res.redirect(302, '/user/' + req.body.user._id);
-});
 
 server.listen(PORT, function(){
   console.log("SERVER IS UP ON PORT:", PORT);
