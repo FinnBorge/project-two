@@ -2,9 +2,11 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var userSchema = new Schema({
-  name: String,
+  name: String ,
+  email: { type: String, set: toLower, index: { unique: true }, validate: /\u0040/ } ,
+  password: String,
   dateCreated: { type: Date, default: Date.now },
-  country: String,
+  location: { type: String, set: toLower } ,
   written: Number,
   edits: Number,
   administrator: Boolean,

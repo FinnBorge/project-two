@@ -36,17 +36,7 @@ server.use('/user', userRouter);
 
 mongoose.connect(MONGOURI + "/" + dbname);
 
-// /* If there is no id property inside of req.session, then redirect to /welcome
-// otherwise, store it in locals and continue*/
-// server.use(function(req, res, next){
-//   if(req.session.id === undefined){
-//     res.redirect(302, '/welcome');
-//   } else {
-//     res.locals.id = req.session.id;
-//     next();
-//   }
-// });
-
+/* Routes */
 server.get('/welcome', function(req, res, next){
   res.render('welcome'); //contains the user name input form
 });
@@ -57,12 +47,6 @@ server.post('/welcome', function(req, res, next){
   **make username unique in the create profile */
   res.redirect(302, '/');
 });
-
-server.get('/user/new', function(req, res, next){
-  res.locals.user = undefined;
-  res.render('newprofile');
-});
-
 
 server.get('/test', function(req, res){
   res.write("Wiki Test");

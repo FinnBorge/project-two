@@ -1,0 +1,16 @@
+<h2>Please fill out the form below to create your profile!</h2>
+<form action="/user" method="post">
+  <div class="form-group">
+
+    <h3>Login Credentials</h3>
+      <input type="email" class="form-control" name="user[email]" placeholder="Email address"/>
+      <input type="password" class="form-control" name="user[password][]" placeholder="password"/>
+      <!-- on blur if these are equivalent then make it green
+           grab them by and evaluate their .val-->
+      <input type="password" class="form-control" name="user[password][]" placeholder="confirm password"/>
+      <input type="text" class="form-control" name="user[name]" placeholder="Username"/>
+      <input type="text" class="form-control" name="user[location]" placeholder="Location"/>
+  </div>
+        <!-- submit -->
+        <input type="submit"/>
+</form>

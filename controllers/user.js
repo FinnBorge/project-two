@@ -2,10 +2,11 @@ var express = require('express'),
     router  = express.Router(),
     Article = require('./models/user.js');
 
-router.get('/new', function (req, res) {
-  //new user form
+router.get('/user/new', function(req, res, next){
+  res.locals.user = undefined;
+  res.render('user/new');
 });
 
-router.post('/', function(req, res){
+router.post('/user', function(req, res){
   //creation of the user
 });
