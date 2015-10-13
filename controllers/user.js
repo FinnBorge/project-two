@@ -40,7 +40,7 @@ router.get('/view', function(req, res, next){
 /* View the login form */
 router.get('/login', function(req, res, next){
   if(req.session.user){
-    res.redirect(302, 'user/view');
+    res.redirect(302, 'user/view/' + req.session.user._id);
   } else {
     res.render('user/login', {});
   }

@@ -23,7 +23,8 @@ router.post('/', function(req, res){
       title: req.body.article.title,
       body: req.body.article.body,
       category: req.body.article.category,
-      tags: req.body.article.tags
+      tags: req.body.article.tags,
+      author: req.session.user.email
     });
     newArticle.save(function(err, article){
       if(err){
