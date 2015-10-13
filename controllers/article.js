@@ -40,8 +40,17 @@ router.post('/', function(req, res){
   }
 });
 
-router.get('view/:id', function (req, res) {
-  // show particular article
+router.get('/view/:id', function (req, res) {
+  Article.findById(req.params.id, function(err, article){
+    if(err){
+      console.log("Error");
+      res.redirect(302, '/');
+    }else{
+      res.render('article/view', {
+          article: article
+      });
+    }
+  });
   console.log("You've hit the article + ID page");
 });
 
