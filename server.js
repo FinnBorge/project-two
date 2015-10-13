@@ -39,7 +39,7 @@ mongoose.connect(MONGOURI + "/" + dbname);
 /* Routes */
 server.get('/welcome', function(req, res, next){
   res.render('welcome', {
-    user: res.locals.user
+    name: res.locals.name || req.body.name
   }); //contains the user name input form
 });
 

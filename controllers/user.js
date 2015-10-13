@@ -19,18 +19,17 @@ router.post('/', function(req, res){
     if(err){
       console.log(err);
     } else {
+      req.session.id = user._id;
       res.redirect(302, '/user/' + user._id);
+      console.log("save complete");
     }
   });
   //creation of the user
 });
 
 router.get('/:id', function(req, res, next){
-  Article.findById(req.params.id, function (err, allArticles) {
-    res.render('user/view', {
-      articles: allArticles || "No Articles!"
-    });
-  });
+  res.render('user/view');
 });
+
 
 module.exports = router;
