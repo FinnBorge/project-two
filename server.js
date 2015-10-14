@@ -56,7 +56,7 @@ mongoose.connect(MONGOURI + "/" + dbname);
 
 /* Routes */
 server.get('/', function(req, res, next){
-  res.render('article/index', {});
+  res.redirect(302, '/article/index');
 });
 
 

@@ -104,14 +104,16 @@ body {
   transform: rotateY( 180deg );
 }
 
-
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
       MAIN styling end
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 
-
+/* Login style */
+#login{
+  width: 50%;
+  margin: 0 auto;
+}
 
 
 

@@ -1,0 +1,4 @@
+<%for(i=0;i<articles.length && i<4;i++){%>
+  <a href="/article/view/<%=articles[i]._id%>"><%=articles[i].title%></a> By <%=articles[i].author%> Regarding: <%=articles[i].category%>
+  </br>
+<%}%>

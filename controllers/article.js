@@ -15,6 +15,19 @@ router.get('/new', function (req, res) {
   res.render('article/new');
 });
 
+router.get('/index', function(req, res){
+  Article.find({}, function(err, allArticles){
+    if(err){
+      console.log(err);
+      res.redirect(302, '/');
+    } else {
+      res.render('article/index', {
+        articles: allArticles
+      });
+    }
+  });
+});
+
 /* Handle incoming user creation form data */
 router.post('/', function(req, res){
   console.log(req.body);
@@ -105,22 +118,7 @@ router.patch('/:id', function (req, res) {
   }); /* closes Article.findById*/
 }); /* closes route */
 
-    /*reference for the patch, delete after finishing*/
-    // newArticle.save(function(err, article){
-    //   if(err){
-    //     console.log(err);
-    //     res.redirect(302, '/article/new');
-    //     /* failed article creation, add flash */
-    //   } else {
-    //     res.redirect(302, '/article/view/' + article._id);
-    //     /* successful article creation, view new article page */
-    //   }
-    // });
-
-
-
-
-router.delete('view/:id', function (req, res) {
+router.delete('/view/:id', function (req, res) {
   // delete article action + REDIRECT  --  ADMIN ONLY
 });
 
