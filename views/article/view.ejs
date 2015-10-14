@@ -1,6 +1,6 @@
 
 <h2>Title: <%=article.title%></h2>
-<h3>Author: <%=article.author%></h3>
+<h3>Author: <a href="/user/view/<%=article.authorId%>"><%=article.author%></a></h3>
 
 
 <h4>Contents:</h4>
@@ -11,3 +11,9 @@
 
 <h5>Category: <%=article.category%></h5>
 <h5>Tag(s): <%=article.tags.join(", ")%></h5>
+
+</br>
+</br>
+<%if(article.edits.length !== 0){%>
+  <h4>This article has been edited, would you like to view the edit?</h4>
+<%}%>

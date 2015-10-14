@@ -35,14 +35,17 @@ router.post('/', function(req, res){
 router.get('/view/:id', function(req, res, next){
   console.log("MADE IT");
   User.findById(req.params.id, function(err, dbuser){
+    Article.find({author: dbuser.email}, function(err, articles){
       if(err){
         console.log("user.findbyid error");
       } else {
         res.render('user/view', {
-          user: dbuser
+          user: dbuser,
+          userArticles: articles
         });
       }
     });
+  });
 });
 
 /* View the login form */

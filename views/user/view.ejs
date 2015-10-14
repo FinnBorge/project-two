@@ -1,3 +1,15 @@
-<h1> Testing <h1>
 <h2><%=user.email%></h2>
+
   <a href="/article/new">Compose an Article?</a>
+
+
+</br>
+</br>
+
+<%if(userArticles.length !== 0){%>
+  <h3>Articles by this author:</h3>
+  <%for(i=0;i<userArticles.length && i<4;i++){%>
+    <a href="/article/view/<%=userArticles[i]._id%>"><%=userArticles[i].title%></a>
+    </br>
+  <%}%>
+<%}%>

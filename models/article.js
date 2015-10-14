@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
 
 var articleSchema = new Schema({
   author: String,
+  authorId: String,
   title: {type: String, index: { unique: true }},
   date: { type: Date, default: Date.now },
   updated: Date,
@@ -22,6 +23,7 @@ var articleSchema = new Schema({
   /* New, intended to stockpile edits before publishing them */
   edits: [{
     editor: String,
+    editorId: String,
     date: {type: Date, default: Date.now},
     editedArticle: {},
     meta: {

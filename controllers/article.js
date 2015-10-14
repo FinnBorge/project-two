@@ -24,7 +24,8 @@ router.post('/', function(req, res){
       body: req.body.article.body,
       category: req.body.article.category,
       tags: req.body.article.tags,
-      author: req.session.user.email
+      author: req.session.user.email,
+      authorId: req.session.user._id
     });
     newArticle.save(function(err, article){
       if(err){
@@ -81,10 +82,14 @@ router.patch('/:id', function (req, res) {
       res.redirect(302, '/edit/' + req.params.id);
     }else{
       var edited = req.body.article;
-      article.meta.downvotes += 1; //just testing whether I can change the values :: works
       article.edits.unshift({ //this means the most recent is always index:0
         editor: req.session.user.email,
+        editorId: req.session.user._id,
         editedArticle: edited,
+        meta:{
+          upvotes: 0,
+          downvotes: 0
+        }
       });
       article.save(function(err, editedarticle){ //findbyidandUpdate
         if(err){
