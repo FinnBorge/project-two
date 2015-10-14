@@ -2,27 +2,27 @@
 <section class="talkcontainer">
   <div id="talkleft">
     <figure class="talkpublished">
-      <h2>Title: <%=published.title%></h2>
-      <h3>Author: <a href="/user/view/<%=published.authorId%>"><%=published.author%></a></h3>
+      <h5>Title: <%=published.title%></h5>
+      <h5>Author: <a href="/user/view/<%=published.authorId%>"><%=published.author%></a></h5>
       <h5>Published: <%=published.date%></h5>
-      <h4>Contents:</h4>
-      <h5><%=published.body%></h5>
-      </br>
       <h5>Category: <%=published.category%></h5>
       <h5>Tag(s): <%=published.tags.join(", ")%></h5>
+      <h5>Contents:</h5>
+      <h5><%=published.body%></h5>
+      </br>
       </br>
     </figure>
   </div>
   <div id="talkright">
     <figure class="talkedited">
-      <h2>Title: <%=edited.editedArticle.title%></h2>
-      <h3>Editor: <a href="/user/view/<%=edited.editorId%>"><%=edited.editor%></a></h3>
+      <h5>Title: <%=edited.editedArticle.title%></h5>
+      <h5>Editor: <a href="/user/view/<%=edited.editorId%>"><%=edited.editor%></a></h5>
       <h5>Edited on: <%=edited.editedArticle.date%></h5>
-      <h4>Contents:</h4>
-      <h5><%=edited.editedArticle.body%></h5>
-      </br>
       <h5>Category: <%=edited.editedArticle.category%></h5>
       <h5>Tag(s): <%=edited.editedArticle.tags.join(", ")%></h5>
+      <h5>Contents:</h5>
+      <h5><%=edited.editedArticle.body%></h5>
+      </br>
       </br>
     </figure>
   </div>

@@ -127,9 +127,23 @@ body {
 
 .talkcontainer {
   transform: perspective( 600px );
-  width: 80vw;
+  width: 90vw;
+  margin: 0 auto;
   height: 360px;
   position: relative;
+}
+
+#talkleft{
+  position: absolute;
+  width: 44vw;
+  background-color: #66FF99;
+}
+
+#talkright{
+  position: absolute;
+  width: 44vw;
+  left: 46vw;
+  background-color: #FF6666;
 }
 
 /* #talkleft .talkpublished #talkright .talkedited */
