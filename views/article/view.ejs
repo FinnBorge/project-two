@@ -13,7 +13,7 @@
             <h5>Tag(s): <%=article.tags.join(", ")%></h5>
             </br>
             <%if(article.edits.length !== 0){%>
-              <h4>This article has been edited, but that edit has not received enough votes to be published. Would you like to <a href="/article/talk/<%=article._id%>">VIEW</a> the edit?</h4>
+              <h4>This article has been edited, but only has <%=article.meta.upvotes%> upvote(s) (needs 5). Would you like to <a href="/article/talk/<%=article._id%>">VIEW</a> the edit?</h4>
             <%}%>
           </figure>
           <figure class="edit">

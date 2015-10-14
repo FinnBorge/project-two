@@ -20,6 +20,7 @@ var articleSchema = new Schema({
     upvotes: {type: Number, default: 0},
     downvotes: {type: Number, default: 0}
   },
+  voters: [String],
   /* New, intended to stockpile edits before publishing them */
   edits: [{
     editor: String,

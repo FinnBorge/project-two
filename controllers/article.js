@@ -112,8 +112,40 @@ router.get('/talk/:id', function (req, res) {
 
 router.post('/talk/:id', function (req, res) {
   /*capture the vote and increment the db val*/
-  console.log("You've voted");
-  res.redirect(302, '/article/index/');
+  if(req.session.user){
+    Article.findById(req.params.id, function(err, article){
+      if(err){
+        console.log("Error");
+        res.redirect(302, '/');
+      }else{
+        var published = article,
+            edited = article.edits[0];
+        if(published.voters.indexOf(req.session.user._id) === -1){
+            var voteQuality = req.body.vote; // === published || edited
+                if(voteQuality === "published"){
+                  published.meta.upvotes += 1;
+                  edited.meta.downvotes += 1;
+                }else if(voteQuality ==="edited"){
+                  published.meta.downvotes += 1;
+                  edited.meta.upvotes += 1;
+                }
+                published.voters.push(req.session.user._id);
+                /* update article if good enough vote count */
+                published.save(function(err, article){
+                  if(err){
+                    res.redirect(302, '/');
+                  } else {
+                    res.redirect(302, '/article/view/' + article._id);
+                  }
+                });
+        } else {
+          res.redirect(302, '/');
+        }
+      }
+    });
+  } else {
+      res.redirect(302, '/');
+  }
 });
 
 /* method override sends the post ?_method="PATCH" to this */
