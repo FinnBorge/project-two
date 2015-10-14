@@ -15,6 +15,18 @@ var express  = require('express'),
     bcrypt = require('bcryptjs');
     //bcrypt = require('bcrypt');
 
+/* Constant Handlers */
+var tags = ["Wood", "Aluminum", "Copper", "Tin", "Bronze", "Iron", "Gold", "Alumite", "Steel"];
+var categories = ["Crunchy", "Bunchy", "Munchy"];
+var uniqueTags = []; //stretch goal, populate with custom tags that have been used once
+var localConstants = function(req, res, next){
+    res.locals.tags = tags;
+    res.locals.categories = categories;
+    next();
+};
+/* Constant Handlers END */
+
+
 /* middleware */
 server.set('views', './views');
 server.set('view engine', 'ejs');
@@ -28,6 +40,10 @@ server.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+/* Custom Middleware */
+server.use(localConstants);
+/* Custom Middleware End */
+
 
 /* set controllers */
 var articleRouter = require('./controllers/article.js');

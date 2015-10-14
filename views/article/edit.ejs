@@ -1,41 +1,34 @@
 <form action="/article/<%=article._id%>?_method=PATCH" method="post">
-  <!--
-  Title: String
-  Body: String
-  Tags: [String, String, etc.] :: these should be checkboxes and more should be added if custom is defined
-  -->
-    <div class="form-group">
-      <h3>Title:</h3>
-        <input type="text" class="form-control" name="article[title]" value="<%=article.title%>"/>
-      <h4>Content:</h4>
-        <textarea name="article[body]" rows="10" cols="60" value="<%=article.body%>"></textarea>
-      </br>
+    <!--
+    Title: String
+    Body: String
+    Tags: [String, String, etc.] :: these should be checkboxes and more should be added if custom is defined
+    -->
+      <div class="form-group">
+        <h3>Title:</h3>
+          <input type="text" class="form-control" name="article[title]" placeholder="Title" value="<%=article.title%>" autofocus="true"/>
+        <h4>Content:</h4>
+          <textarea name="article[body]" rows="10" cols="60" placeholder="Content"><%=article.body%></textarea>
+        </br>
 
-      <!-- Categories -->
-        <!-- How do i auto select the right one? -->
-      <h5>Categories</h5>
-        <input type="radio" name="article[category]" id="radio1" value="Crunchy"/>
-        <label for="radio1">Crunchy</label>
-        <input type="radio" name="article[category]" id="radio2" value="Bunchy"/>
-        <label for="radio2">Bunchy</label>
-        <input type="radio" name="article[category]" id="radio3" value="Munchy"/>
-        <label for="radio3">Munchy</label>
-      <!-- Categories END -->
+        <!-- Categories -->
+        <h5>Categories</h5>
+          <%for(i=0;i<categories.length;i++){%>
+            <input type="radio" name="article[category]" id="radio<%=i%>" value="<%=categories[i]%>" <%if(article.category === categories[i]){%>checked<%}%>/>
+            <label for="radio<%=i%>"><%=categories[i]%></label>
+          <%}%>
+        <!-- Categories END -->
 
-      <!-- Tags -->
-        <!-- How do i auto select the right one? -->
-      <h5>Tags</h5>
-        <input type="checkbox" name="article[tags][]" id="check1" value="philosophy"/>
-        <label for="check1">Philosophy</label>
-        <input type="checkbox" name="article[tags][]" id="check2" value="sandwiches"/>
-        <label for="check2">Sandwiches</label>
-        <input type="checkbox" name="article[tags][]" id="check3" value="hobnobbing"/>
-        <label for="check3">Hobnobbing</label>
-        <input type="checkbox" name="article[tags][]" id="check4" value="ghoulishthings"/>
-        <label for="check4">Misc. Ghoulish Pursuits</label>
-        <input type="text" class="form-control" name="article[tags][]" placeholder="Custom Tag"/>
-      <!-- Tags END -->
+        <!-- Tags -->
+        <h5>Tags</h5>
+          <%for(i=0;i<tags.length;i++){%>
+            <input type="checkbox" name="article[tags]" id="tags<%=i%>" value="<%=tags[i]%>" <%if(article.tags.indexOf(tags[i])!==-1){%>checked<%}%>/>
+            <label for="tags<%=i%>"><%=tags[i]%></label>
+          <%}%>
+          <!-- <input type="text" class="form-control" name="article[tags][]" placeholder="Custom Tag"/> -->
+        <!-- Tags END -->
 
-    </div>
-  <input type="submit"/>
-</form>
+      </div>
+    </br>
+    <input type="submit"/>
+  </form>

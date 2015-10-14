@@ -15,27 +15,22 @@
 
       <!-- Categories -->
       <h5>Categories</h5>
-        <input type="radio" name="article[category]" id="radio1" value="Crunchy"/>
-        <label for="radio1">Crunchy</label>
-        <input type="radio" name="article[category]" id="radio2" value="Bunchy"/>
-        <label for="radio2">Bunchy</label>
-        <input type="radio" name="article[category]" id="radio3" value="Munchy"/>
-        <label for="radio3">Munchy</label>
+        <%for(i=0;i<categories.length;i++){%>
+          <input type="radio" name="article[category]" id="radio<%=i%>" value="<%=categories[i]%>"/>
+          <label for="radio<%=i%>"><%=categories[i]%></label>
+        <%}%>
       <!-- Categories END -->
 
       <!-- Tags -->
       <h5>Tags</h5>
-        <input type="checkbox" name="article[tags][]" id="check1" value="philosophy"/>
-        <label for="check1">Philosophy</label>
-        <input type="checkbox" name="article[tags][]" id="check2" value="sandwiches"/>
-        <label for="check2">Sandwiches</label>
-        <input type="checkbox" name="article[tags][]" id="check3" value="hobnobbing"/>
-        <label for="check3">Hobnobbing</label>
-        <input type="checkbox" name="article[tags][]" id="check4" value="ghoulishthings"/>
-        <label for="check4">Misc. Ghoulish Pursuits</label>
-        <input type="text" class="form-control" name="article[tags][]" placeholder="Custom Tag"/>
+        <%for(i=0;i<tags.length;i++){%>
+          <input type="checkbox" name="article[tags]" id="tags<%=i%>" value="<%=tags[i]%>"/>
+          <label for="tags<%=i%>"><%=tags[i]%></label>
+        <%}%>
+        <!-- <input type="text" class="form-control" name="article[tags][]" placeholder="Custom Tag"/> -->
       <!-- Tags END -->
 
     </div>
+  </br>
   <input type="submit"/>
 </form>

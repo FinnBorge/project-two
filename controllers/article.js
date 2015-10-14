@@ -41,6 +41,7 @@ router.post('/', function(req, res){
   }
 });
 
+/* View get Route */
 router.get('/view/:id', function (req, res) {
   Article.findById(req.params.id, function(err, article){
     if(err){
@@ -55,7 +56,8 @@ router.get('/view/:id', function (req, res) {
   console.log("You've hit the article + ID page");
 });
 
-router.get('view/:id/edit', function (req, res) {
+/* EDIT get Route */
+router.get('/edit/:id/', function (req, res) {
   Article.findById(req.params.id, function(err, article){
     if(err){
       console.log("Error");
@@ -69,7 +71,7 @@ router.get('view/:id/edit', function (req, res) {
 });
 
 /* method override sends the post ?_method="PATCH" to this */
-router.patch('view/:id', function (req, res) {
+router.patch('/:id', function (req, res) {
   // update article action REDIRECT
 });
 
