@@ -1,8 +1,8 @@
   <main>
     <section class="container">
-        <button onclick="$('#main-article').toggleClass('viewedit')">Edit this article?</button>
-        <div id="main-article">
-          <figure class="published">
+        <button onclick="$('#viewer').toggleClass('viewedit')">Edit this article?</button>
+        <div id="viewer">
+          <figure class="viewpublished">
             <h2>Title: <%=article.title%></h2>
             <h3>Author: <a href="/user/view/<%=article.authorId%>"><%=article.author%></a></h3>
             <h5>Published: <%=article.date%></h5>

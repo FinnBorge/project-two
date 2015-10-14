@@ -58,7 +58,7 @@ header ul {
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
-      MAIN styling start
+      VIEW.EJS styling start
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 body {
   background-color: white;
@@ -71,7 +71,7 @@ body {
   position: relative;
 }
 
-#main-article {
+#viewer {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -80,7 +80,7 @@ body {
   margin: 0 auto;
 }
 
-#main-article figure {
+#viewer figure {
   margin: 0;
   display: block;
   position: absolute;
@@ -89,23 +89,23 @@ body {
   backface-visibility: hidden;
 }
 
-#main-article .published {
+#viewer .viewpublished {
 }
 
-#main-article .edit {
+#viewer .edit {
   transform: rotateY( 180deg );
 }
 
-#main-article .edit input[type="text"]{
+#viewer .edit input[type="text"]{
   margin-top: 20px;
 }
 
-#main-article.viewedit {
+#viewer.viewedit {
   transform: rotateY( 180deg );
 }
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
-      MAIN styling end
+      VIEW.EJS styling end
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 
@@ -120,6 +120,23 @@ body {
   width: 70%;
   margin: 20px 20px;
 }
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      TALK.EJS styling
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.talkcontainer {
+  transform: perspective( 600px );
+  width: 80vw;
+  height: 360px;
+  position: relative;
+}
+
+/* #talkleft .talkpublished #talkright .talkedited */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      VIEW.EJS styling end
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>

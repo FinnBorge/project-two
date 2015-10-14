@@ -10,8 +10,8 @@ var articleSchema = new Schema({
   author: String,
   authorId: String,
   title: {type: String, index: { unique: true }},
-  date: { type: Date, default: Date.now },
-  updated: Date,
+  date: String,
+  updated: String,
   body: String,
   comments: [{ body: String, date: Date }],
   category: String,
@@ -24,7 +24,7 @@ var articleSchema = new Schema({
   edits: [{
     editor: String,
     editorId: String,
-    date: {type: Date, default: Date.now},
+    date: String,
     editedArticle: {},
     meta: {
       upvotes: Number,

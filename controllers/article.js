@@ -32,13 +32,16 @@ router.get('/index', function(req, res){
 router.post('/', function(req, res){
   console.log(req.body);
   if(req.session.user){
+    var now = new Date();
+    var theDate = now.toUTCString();
     var newArticle = new Article({
       title: req.body.article.title,
       body: req.body.article.body,
       category: req.body.article.category,
       tags: req.body.article.tags,
       author: req.session.user.name,
-      authorId: req.session.user._id
+      authorId: req.session.user._id,
+      date: theDate
     });
     newArticle.save(function(err, article){
       if(err){
@@ -84,38 +87,58 @@ router.get('/edit/:id/', function (req, res) {
   });
 });
 
-/* method override sends the post ?_method="PATCH" to this */
-router.patch('/:id', function (req, res) {
-  // update article action REDIRECT
-  if(req.session.user){}else{res.redirect(302, '/user/login');}
-  console.log(req.body);
+/* TALK get Route */
+router.get('/talk/:id', function (req, res) {
   Article.findById(req.params.id, function(err, article){
     if(err){
       console.log("Error");
-      res.redirect(302, '/edit/' + req.params.id);
+      res.redirect(302, '/');
     }else{
-      var edited = req.body.article;
-      article.edits.unshift({ //this means the most recent is always index:0
-        editor: req.session.user.name,
-        editorId: req.session.user._id,
-        editedArticle: edited,
-        meta:{
-          upvotes: 0,
-          downvotes: 0
-        }
+      res.render('article/talk', {
+          published: article,
+          edited: article.edits[0]
       });
-      article.save(function(err, editedarticle){ //findbyidandUpdate
-        if(err){
-          console.log(err);
-          res.redirect(302, '/edit/' + article._id);
-        } else {
-            /* gotta show the edit, maybe compare against original? voting system*/
-          console.log(article);
-          res.redirect(302, '/article/view/' + editedarticle._id);
-        }
-      });
-    } /* closes Else */
-  }); /* closes Article.findById*/
+    }
+  });
+  console.log("You've hit the talk page");
+});
+
+/* method override sends the post ?_method="PATCH" to this */
+router.patch('/:id', function (req, res) {
+  // update article action REDIRECT
+  console.log(req.body);
+  if(req.session.user){
+    Article.findById(req.params.id, function(err, article){
+      if(err){
+        console.log("Error");
+        res.redirect(302, '/edit/' + req.params.id);
+      }else{
+        var edited = req.body.article;
+        var now = new Date();
+        edited.date = now.toUTCString();
+        article.edits.unshift({ //this means the most recent is always index:0
+          editor: req.session.user.name,
+          editorId: req.session.user._id,
+          editedArticle: edited,
+          meta:{
+            upvotes: 0,
+            downvotes: 0
+          }
+        });
+        article.save(function(err, editedarticle){ //findbyidandUpdate
+          if(err){
+            console.log(err);
+            res.redirect(302, '/edit/' + article._id);
+          } else {
+              /* gotta show the edit, maybe compare against original? voting system*/
+            console.log(article);
+            res.redirect(302, '/article/view/' + editedarticle._id);
+          }
+        });
+      } /* closes Else */
+    }); /* closes Article.findById*/
+  }else{res.redirect(302, '/user/login');}
+
 }); /* closes route */
 
 router.delete('/view/:id', function (req, res) {
