@@ -11,9 +11,9 @@ li {
 }
 
 header {
-  display: flex;
-  justify-content: space-around;
+  width: 90vw;
   align-items: flex-end;
+  margin: 0 auto;
   margin-top: 20px;
 }
 
@@ -21,12 +21,10 @@ header span{
   display: inline-block;
 }
 
-header h1{
-  display: inline-block;
-}
-
 header ul {
   display: inline-block;
+  float: right;
+  margin-top: 80px;
 }
 
 /* Large */
@@ -77,6 +75,7 @@ body {
   position: absolute;
   transform-style: preserve-3d;
   transition: transform 1s;
+  transform-origin: right center;
   margin: 0 auto;
 }
 
@@ -101,7 +100,7 @@ body {
 }
 
 #viewer.viewedit {
-  transform: rotateY( 180deg );
+  transform: translateX( -100% ) rotateY( -180deg );
 }
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -120,38 +119,6 @@ body {
   width: 70%;
   margin: 20px 20px;
 }
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
-      TALK.EJS styling
->>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-
-.talkcontainer {
-  transform: perspective( 600px );
-  width: 90vw;
-  margin: 0 auto;
-  height: 360px;
-  position: relative;
-}
-
-#talkleft{
-  position: absolute;
-  width: 44vw;
-  background-color: #66FF99;
-}
-
-#talkright{
-  position: absolute;
-  width: 44vw;
-  left: 46vw;
-  background-color: #FF6666;
-}
-
-/* #talkleft .talkpublished #talkright .talkedited */
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
-      VIEW.EJS styling end
->>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
       FORM styling start
@@ -213,4 +180,73 @@ form {
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
       FORM styling end
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      TALK.EJS styling
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.talkcontainer {
+  transform: perspective( 800px );
+  width: 90vw;
+  margin: 0 auto;
+  height: 200px;
+  position: relative;
+}
+
+.talkcontainer .hidden{
+  opacity: 0;
+}
+
+#published{
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #66FF99;
+  transition: transform 1s;
+}
+
+#edited{
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #FF9999;
+  transition: transform 1s;
+}
+
+#votebox{
+  background-color: steelblue;
+  height: 100px;
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#votebox label {
+  border: 1px solid black;
+  width: 90px;
+  height: 90px;
+  transition: .3s;
+}
+
+#votebox #vote-published:checked + label {
+  background-color:#66FF99;
+  color: white;
+  transform: scale(1.2,1.2);
+}
+
+#votebox #vote-edited:checked + label {
+  background-color:#FF9999;
+  color: white;
+  transform: scale(1.2,1.2);
+}
+
+
+
+/* #talkleft .talkpublished #talkright .talkedited */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      TALK.EJS styling end
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */

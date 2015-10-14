@@ -1,29 +1,55 @@
-<!-- side by side of the published and recent edit.  Maybe click a button to iterate through recent edits? -->
 <section class="talkcontainer">
-  <div id="talkleft">
-    <figure class="talkpublished">
-      <h5>Title: <%=published.title%></h5>
-      <h5>Author: <a href="/user/view/<%=published.authorId%>"><%=published.author%></a></h5>
-      <h5>Published: <%=published.date%></h5>
-      <h5>Category: <%=published.category%></h5>
-      <h5>Tag(s): <%=published.tags.join(", ")%></h5>
-      <h5>Contents:</h5>
-      <h5><%=published.body%></h5>
+  <div id="published">
+    <figure>
+      <span><%=published.title%></span>
+      </br>
+      <span><a href="/user/view/<%=published.authorId%>"><%=published.author%></a></span>
+      </br>
+      <span><%=published.date%></span>
+      </br>
+      <span><%=published.category%></span>
+      </br>
+      <span><%=published.tags.join(", ")%></span>
+      </br>
+      </br>
+      <span><%=published.body%></span>
       </br>
       </br>
     </figure>
   </div>
-  <div id="talkright">
-    <figure class="talkedited">
-      <h5>Title: <%=edited.editedArticle.title%></h5>
-      <h5>Editor: <a href="/user/view/<%=edited.editorId%>"><%=edited.editor%></a></h5>
-      <h5>Edited on: <%=edited.editedArticle.date%></h5>
-      <h5>Category: <%=edited.editedArticle.category%></h5>
-      <h5>Tag(s): <%=edited.editedArticle.tags.join(", ")%></h5>
-      <h5>Contents:</h5>
-      <h5><%=edited.editedArticle.body%></h5>
+  <div id="edited" class="hidden">
+    <figure>
+      <span><%=edited.editedArticle.title%></span>
+      </br>
+      <span><a href="/user/view/<%=edited.editorId%>"><%=edited.editor%></a></span>
+      </br>
+      <span><%=edited.editedArticle.date%></span>
+      </br>
+      <span><%=edited.editedArticle.category%></span>
+      </br>
+      <span><%=edited.editedArticle.tags.join(", ")%></span>
+      </br>
+      </br>
+      <span><%=edited.editedArticle.body%></span>
       </br>
       </br>
     </figure>
   </div>
 </section>
+
+  <form action="/article/talk/<%=published._id%>" method="post">
+    <section id="votebox">
+
+        <input type="radio" name="vote" id="vote-published" value="published"/>
+        <label for="vote-published" id="vpl"></label>
+
+        <input type="submit" value="Vote"/>
+
+        <input type="radio" name="vote" id="vote-edited" value="edited"/>
+        <label for="vote-edited" id="ved"></label>
+    </section>
+  </form>
+
+<h2> Comments go here </h2>
+
+<script src="/scripts/talk.js"></script>

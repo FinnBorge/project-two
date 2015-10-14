@@ -103,6 +103,12 @@ router.get('/talk/:id', function (req, res) {
   console.log("You've hit the talk page");
 });
 
+router.post('/talk/:id', function (req, res) {
+  /*capture the vote and increment the db val*/
+  console.log("You've voted");
+  res.redirect(302, '/article/index/');
+});
+
 /* method override sends the post ?_method="PATCH" to this */
 router.patch('/:id', function (req, res) {
   // update article action REDIRECT
