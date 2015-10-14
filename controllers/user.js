@@ -35,7 +35,7 @@ router.post('/', function(req, res){
 router.get('/view/:id', function(req, res, next){
   console.log("MADE IT");
   User.findById(req.params.id, function(err, dbuser){
-    Article.find({author: dbuser.email}, function(err, articles){
+    Article.find({authorId: dbuser._id}, function(err, articles){
       if(err){
         console.log("user.findbyid error");
       } else {
@@ -75,6 +75,11 @@ router.post('/login', function(req, res, next){
       //track attempts?
     }
   });
+});
+
+router.get('/logout', function(req, res, next){
+  req.session.user = null;
+  res.redirect(302, '/');
 });
 
 module.exports = router;

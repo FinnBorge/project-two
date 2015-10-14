@@ -37,7 +37,7 @@ router.post('/', function(req, res){
       body: req.body.article.body,
       category: req.body.article.category,
       tags: req.body.article.tags,
-      author: req.session.user.email,
+      author: req.session.user.name,
       authorId: req.session.user._id
     });
     newArticle.save(function(err, article){
@@ -96,7 +96,7 @@ router.patch('/:id', function (req, res) {
     }else{
       var edited = req.body.article;
       article.edits.unshift({ //this means the most recent is always index:0
-        editor: req.session.user.email,
+        editor: req.session.user.name,
         editorId: req.session.user._id,
         editedArticle: edited,
         meta:{

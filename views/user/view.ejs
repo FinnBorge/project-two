@@ -1,15 +1,20 @@
-<h2><%=user.email%></h2>
+<div id="index">
+  <h1><%=user.name%></h1>
+  <h2>email: <%=user.email%></h2>
+  <h3>location: <%=user.location%></h3>
 
-  <a href="/article/new">Compose an Article?</a>
+
+    <a href="/article/new">Compose an Article?</a>
 
 
-</br>
-</br>
+  </br>
+  </br>
 
-<%if(userArticles.length !== 0){%>
-  <h3>Articles by this author:</h3>
-  <%for(i=0;i<userArticles.length && i<4;i++){%>
-    <a href="/article/view/<%=userArticles[i]._id%>"><%=userArticles[i].title%></a>
-    </br>
+  <%if(userArticles.length !== 0){%>
+    <h3>Articles by this author:</h3>
+    <%for(i=0;i<userArticles.length && i<4;i++){%>
+      <a href="/article/view/<%=userArticles[i]._id%>"><%=userArticles[i].title%></a>
+      </br>
+    <%}%>
   <%}%>
-<%}%>
+</div>
