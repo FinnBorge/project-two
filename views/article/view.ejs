@@ -1,19 +1,57 @@
+  <main>
+    <section class="container">
+        <button onclick="$('#main-article').toggleClass('viewedit')">Edit this article?</button>
+        <div id="main-article">
+          <figure class="published">
+            <h2>Title: <%=article.title%></h2>
+            <h3>Author: <a href="/user/view/<%=article.authorId%>"><%=article.author%></a></h3>
+            <h4>Contents:</h4>
+            <h5><%=article.body%></h5>
+            </br>
+            <h5>Category: <%=article.category%></h5>
+            <h5>Tag(s): <%=article.tags.join(", ")%></h5>
+            </br>
+            <%if(article.edits.length !== 0){%>
+              <h4>This article has been edited, would you like to view the edit?</h4>
+            <%}%>
+          </figure>
+          <figure class="edit">
+            <form action="/article/<%=article._id%>?_method=PATCH" method="post">
+                <!--
+                Title: String
+                Body: String
+                Tags: [String, String, etc.] :: these should be checkboxes and more should be added if custom is defined
+                -->
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="article[title]" placeholder="Title" value="<%=article.title%>" autofocus="true"/>
+                    <h4>Content:</h4>
+                      <textarea name="article[body]" rows="10" cols="60" placeholder="Content"><%=article.body%></textarea>
+                    </br>
 
-<h2>Title: <%=article.title%></h2>
-<h3>Author: <a href="/user/view/<%=article.authorId%>"><%=article.author%></a></h3>
+                    <!-- Categories -->
+                    <h5>Categories</h5>
+                      <%for(i=0;i<categories.length;i++){%>
+                        <input type="radio" name="article[category]" id="radio<%=i%>" value="<%=categories[i]%>" <%if(article.category === categories[i]){%>checked<%}%>/>
+                        <label for="radio<%=i%>"><%=categories[i]%></label>
+                      <%}%>
+                    <!-- Categories END -->
 
+                    <!-- Tags -->
+                    <h5>Tags</h5>
+                      <%for(i=0;i<tags.length;i++){%>
+                        <input type="checkbox" name="article[tags]" id="tags<%=i%>" value="<%=tags[i]%>" <%if(article.tags.indexOf(tags[i])!==-1){%>checked<%}%>/>
+                        <label for="tags<%=i%>"><%=tags[i]%></label>
+                      <%}%>
+                      <!-- <input type="text" class="form-control" name="article[tags][]" placeholder="Custom Tag"/> -->
+                    <!-- Tags END -->
 
-<h4>Contents:</h4>
-<h5><%=article.body%></h5>
+                  </div>
+                </br>
+                <input type="submit"/>
+              </form>
+          </figure>
+        </div>
+    </section>
+  </main>
 </br>
-
-
-
-<h5>Category: <%=article.category%></h5>
-<h5>Tag(s): <%=article.tags.join(", ")%></h5>
-
 </br>
-</br>
-<%if(article.edits.length !== 0){%>
-  <h4>This article has been edited, would you like to view the edit?</h4>
-<%}%>
