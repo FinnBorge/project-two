@@ -216,7 +216,7 @@ form {
 
 #votebox{
   background-color: steelblue;
-  height: 100px;
+  min-height: 100px;
   width: 90vw;
   margin: 0 auto;
   display: flex;
@@ -229,6 +229,10 @@ form {
   width: 90px;
   height: 90px;
   transition: .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 38px;
 }
 
 #votebox #vote-published:checked + label {

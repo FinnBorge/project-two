@@ -41,12 +41,12 @@
     <section id="votebox">
 
         <input type="radio" name="vote" id="vote-published" value="published"/>
-        <label for="vote-published" id="vpl"></label>
+        <label for="vote-published" id="vpl"><%=published.meta.upvotes%></label>
 
         <input type="submit" value="Vote"/>
 
         <input type="radio" name="vote" id="vote-edited" value="edited"/>
-        <label for="vote-edited" id="ved"></label>
+        <label for="vote-edited" id="ved"><%=edited.meta.upvotes%></label>
     </section>
   </form>
 
