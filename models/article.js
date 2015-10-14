@@ -13,7 +13,7 @@ var articleSchema = new Schema({
   date: String,
   updated: String,
   body: String,
-  comments: [{ body: String, date: Date }],
+  comments: [{ body: String, date: Date, author: String }],
   category: String,
   tags: [String],
   meta: {

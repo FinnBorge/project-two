@@ -247,6 +247,10 @@ form {
   transform: scale(1.2,1.2);
 }
 
+#comments {
+  /* Comments Div with .comment Spans in it */
+}
+
 
 
 /* #talkleft .talkpublished #talkright .talkedited */

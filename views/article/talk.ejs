@@ -49,7 +49,17 @@
         <label for="vote-edited" id="ved"><%=edited.meta.upvotes%></label>
     </section>
   </form>
+</br>
 
-<h2> Comments go here </h2>
+<section id="comments">
+    <div class="comment">Write a Comment?</div>
+  <%for(i=0;i<published.comments.length && i<5;i++){%>
+    <div class="comment">
+      <span><%=published.comments[i].author%></span>
+      <span><%=published.comments[i].date%></span>
+      <span><%=published.comments[i].body%></span>
+    </div>
+  <%}%>
+</section>
 
 <script src="/scripts/talk.js"></script>
