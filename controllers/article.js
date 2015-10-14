@@ -73,7 +73,47 @@ router.get('/edit/:id/', function (req, res) {
 /* method override sends the post ?_method="PATCH" to this */
 router.patch('/:id', function (req, res) {
   // update article action REDIRECT
-});
+  if(req.session.user){}else{res.redirect(302, '/user/login');}
+  console.log(req.body);
+  Article.findById(req.params.id, function(err, article){
+    if(err){
+      console.log("Error");
+      res.redirect(302, '/edit/' + req.params.id);
+    }else{
+      var edited = req.body.article;
+      article.meta.downvotes += 1; //just testing whether I can change the values :: works
+      article.edits.unshift({ //this means the most recent is always index:0
+        editor: req.session.user.email,
+        editedArticle: edited,
+      });
+      article.save(function(err, editedarticle){ //findbyidandUpdate
+        if(err){
+          console.log(err);
+          res.redirect(302, '/edit/' + article._id);
+        } else {
+            /* gotta show the edit, maybe compare against original? voting system*/
+          console.log(article);
+          res.redirect(302, '/article/view/' + editedarticle._id);
+        }
+      });
+    } /* closes Else */
+  }); /* closes Article.findById*/
+}); /* closes route */
+
+    /*reference for the patch, delete after finishing*/
+    // newArticle.save(function(err, article){
+    //   if(err){
+    //     console.log(err);
+    //     res.redirect(302, '/article/new');
+    //     /* failed article creation, add flash */
+    //   } else {
+    //     res.redirect(302, '/article/view/' + article._id);
+    //     /* successful article creation, view new article page */
+    //   }
+    // });
+
+
+
 
 router.delete('view/:id', function (req, res) {
   // delete article action + REDIRECT  --  ADMIN ONLY

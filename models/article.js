@@ -16,9 +16,19 @@ var articleSchema = new Schema({
   category: String,
   tags: [String],
   meta: {
-    upvotes: Number,
-    downvotes: Number,
-  }
+    upvotes: {type: Number, default: 0},
+    downvotes: {type: Number, default: 0}
+  },
+  /* New, intended to stockpile edits before publishing them */
+  edits: [{
+    editor: String,
+    date: {type: Date, default: Date.now},
+    editedArticle: {},
+    meta: {
+      upvotes: Number,
+      downvotes: Number,
+    }
+  }]
 });
 
 articleSchema.methods.findRelated = function (callback) {
