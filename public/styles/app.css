@@ -248,13 +248,56 @@ form {
 }
 
 #comments {
-  /* Comments Div with .comment Spans in it */
+  /* Comments Div with .comment Spans in it*/
 }
-
 
 
 /* #talkleft .talkpublished #talkright .talkedited */
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
       TALK.EJS styling end
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      index.EJS styling
+>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+#index{
+  width:90vw;
+  margin: 0 auto;
+}
+
+.index-category{
+  width:80%;
+  margin: 10px auto;
+  font-size: 30px;
+  -webkit-box-shadow: -2px 2px 5px 0px rgba(138,172,184,1);
+  -moz-box-shadow: -2px 2px 5px 0px rgba(138,172,184,1);
+  box-shadow: -2px 2px 5px 0px rgba(138,172,184,1);
+}
+
+.index-article-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 20vw;
+}
+
+.index-article{
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid black;
+  transition: 1s;
+}
+
+.index-article:hover{
+  border: 1px solid red;
+  background-color: orange;
+  color: white;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+      index.EJS styling end
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */

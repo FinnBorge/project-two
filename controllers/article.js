@@ -2,11 +2,17 @@ var express = require('express'),
     router  = express.Router(),
     Article = require('../models/article.js');
 
-router.get('/', function (req, res) {
-  Article.find({}, function (err, allArticles) {
-    res.render('articles/index', {
-      articles: allArticles
-    });
+router.get('/', function(req, res){
+  Article.find({}, function(err, allArticles){
+    if(err){
+      console.log(err);
+      res.redirect(302, '/');
+    } else {
+      res.render('article/index', {
+        articles: allArticles,
+        locals: res.locals
+      });
+    }
   });
 });
 
@@ -22,7 +28,8 @@ router.get('/index', function(req, res){
       res.redirect(302, '/');
     } else {
       res.render('article/index', {
-        articles: allArticles
+        articles: allArticles,
+        locals: res.locals
       });
     }
   });
