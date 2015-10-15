@@ -137,6 +137,23 @@ router.get('/edit/:id/', function (req, res) {
   });
 });
 
+router.post('/talk/comment/:id', function(req, res){
+  var now = new Date();
+  var newComment = {
+    body: req.body.comment.body,
+    date: now.toUTCString(),
+    author: req.session.user.name,
+    authorId: req.session.user._id
+  };
+  Article.findByIdAndUpdate(req.params.id, { $push: { comments: newComment }}, function(err, article){
+    if(err){
+      console.log(err);
+    } else {
+      res.redirect(302, '/article/talk/' + article._id);
+    }
+  });
+});
+
 /* TALK get Route */
 router.get('/talk/:id', function (req, res) {
   Article.findById(req.params.id, function(err, article){

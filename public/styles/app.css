@@ -299,6 +299,7 @@ form {
   display: flex;
   width: 90vw;
   margin: 0 auto;
+  flex-direction: column;
   /* Comments Div with .comment Spans in it*/
 }
 
@@ -306,6 +307,7 @@ form {
 /* #talkleft .talkpublished #talkright .talkedited */
 
 .comment-clicker{
+  max-width: 100px;
   background-color: green;
   color: white;
   transition: transform 0.6s;

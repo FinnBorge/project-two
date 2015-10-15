@@ -43,7 +43,9 @@
         <input type="radio" name="vote" id="vote-published" value="published"/>
         <label for="vote-published" id="vpl"><%=published.meta.upvotes%></label>
 
+        <%if(user._id){%>
         <input type="submit" value="Vote"/>
+        <%}%>
 
         <input type="radio" name="vote" id="vote-edited" value="edited"/>
         <label for="vote-edited" id="ved"><%=edited.meta.upvotes%></label>
@@ -51,8 +53,12 @@
   </form>
 </br>
 
+
+<%if(user._id){%>
+<div class="comment-clicker">Write a Comment?</div>
+<%}%>
 <section id="comments">
-  <div class="comment-clicker">Write a Comment?</div>
+
     <div class="hidden-comment">
       <form action="/article/talk/comment/<%=published._id%>" method="post">
         <textarea name="comment[body]" rows="4" cols="60" placeholder="Comment"></textarea>
@@ -61,7 +67,7 @@
     </div>
   <%for(i=0;i<published.comments.length && i<5;i++){%>
     <div class="comment">
-      <span><%=published.comments[i].author%></span>
+      <span><a href="/user/view/<%=published.comments[i].authorId%>"><%=published.comments[i].author%></a></span>
       <span><%=published.comments[i].date%></span>
       <span><%=published.comments[i].body%></span>
     </div>
