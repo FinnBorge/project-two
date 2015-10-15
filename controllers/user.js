@@ -40,7 +40,7 @@ router.get('/view/:id', function(req, res, next){
         console.log("user.findbyid error");
       } else {
         res.render('user/view', {
-          user: dbuser,
+          dbuser: dbuser,
           userArticles: articles
         });
       }

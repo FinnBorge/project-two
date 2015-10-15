@@ -40,31 +40,26 @@ header ul li{
   align-self: flex-end;
   width: 500px;
   height: 100px;
-  border: 1px solid black; /* Temporary, while testing */
-  /*opacity: 0px;*/
+  opacity: 1;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-#flashbox.shown {
-  display: inline-flex;
-  align-self: flex-end;
-  width: 500px;
-  height: 100px;
-  background-color: black;
-  opacity: 1;
-  align-items: center;
-}
-
-#flashbox *{
+#flashbox * {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+#flashbox #admin-tools{
+  opacity: 0;
+}
+
+#flashbox #admin-tools.true{
+  opacity: 1;
+}
 
 #flashmessage {
   max-height: 35px;
-  background-color: green;
   width: 500px;
 }
 

@@ -229,8 +229,27 @@ router.patch('/:id', function (req, res) {
 
 }); /* closes route */
 
-router.delete('/view/:id', function (req, res) {
-  // delete article action + REDIRECT  --  ADMIN ONLY
+router.delete('/:id', function (req, res) {
+  if(req.session.user.admin){
+    Article.findById(req.params.id, function(err, article){
+      if(err){
+        console.log("Error");
+        res.redirect(302, '/article/edit/' + req.params.id);
+      } else {
+        Article.findByIdAndRemove(req.params.id, function(err){
+          if(err){
+            console.log(err);
+          } else {
+            req.session.flash.message = "Article Deleted";
+            res.redirect(302, '/article/index/');
+          }
+        });
+      }
+    });
+  } else {
+    console.log("How did you get here?");
+    res.redirect(302, '/');
+  }
 });
 
 module.exports = router;
