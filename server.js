@@ -42,6 +42,12 @@ server.use(session({
 }));
 /* Custom Middleware */
 server.use(localConstants);
+
+server.use(function (req, res, next) {
+    res.locals.flash  = req.session.flash || {};
+    req.session.flash = {};
+    next();
+  });
 /* Custom Middleware End */
 
 
