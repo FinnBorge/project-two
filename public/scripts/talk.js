@@ -13,3 +13,10 @@ $container.on('click', function(){
     $identifier.innerText = "Published Version";
   }
 });
+
+var $commentButton = $('.comment-clicker'),
+    $commentCreate = $('.hidden-comment');
+$commentButton.on('click', function(){
+  $commentButton.hide("fast");
+  $commentCreate.attr("class", "comment");
+});

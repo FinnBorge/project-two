@@ -52,7 +52,13 @@
 </br>
 
 <section id="comments">
-    <div class="comment">Write a Comment?</div>
+  <div class="comment-clicker">Write a Comment?</div>
+    <div class="hidden-comment">
+      <form action="/article/talk/comment/<%=published._id%>" method="post">
+        <textarea name="comment[body]" rows="4" cols="60" placeholder="Comment"></textarea>
+        <input type="submit" value="Post"/>
+      </form>
+    </div>
   <%for(i=0;i<published.comments.length && i<5;i++){%>
     <div class="comment">
       <span><%=published.comments[i].author%></span>

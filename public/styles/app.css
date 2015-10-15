@@ -62,6 +62,12 @@ header ul li{
 #flashmessage {
   max-height: 35px;
   width: 500px;
+  opacity: 1;
+  transition: transform 1.6s;
+}
+
+#flashmessage.hide-flash-message{
+  opacity: 0;
 }
 
 /* Large */
@@ -140,6 +146,10 @@ body {
   transform: translateX( -100% ) rotateY( -180deg );
 }
 
+#delete {
+  opacity: 1;
+}
+
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
       VIEW.EJS styling end
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -161,6 +171,7 @@ body {
       FORM styling start
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 #title{
+  max-width: 60vw;
   margin: 0 auto;
 }
 
@@ -252,7 +263,7 @@ form {
 }
 
 #votebox{
-  background-color: steelblue;
+  background-color: #6699FF;
   min-height: 100px;
   width: 90vw;
   margin: 0 auto;
@@ -285,11 +296,43 @@ form {
 }
 
 #comments {
+  display: flex;
+  width: 90vw;
+  margin: 0 auto;
   /* Comments Div with .comment Spans in it*/
 }
 
 
 /* #talkleft .talkpublished #talkright .talkedited */
+
+.comment-clicker{
+  background-color: green;
+  color: white;
+  transition: transform 0.6s;
+}
+
+.comment-clicker:hover{
+  transform: scale(1.5);
+}
+
+.hidden-comment{
+  display: none;
+}
+
+.comment{
+  display: flex;
+  background: #6699FF;
+  margin: 0 auto;
+  width: 80vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
       TALK.EJS styling end

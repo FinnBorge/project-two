@@ -98,6 +98,7 @@ router.post('/', function(req, res){
         res.redirect(302, '/article/new');
         /* failed article creation, add flash */
       } else {
+        req.session.flash.message = "Thank you " + article.author + " for creating " + article.title + "!";
         res.redirect(302, '/article/view/' + article._id);
         /* successful article creation, view new article page */
       }
@@ -178,6 +179,7 @@ router.post('/talk/:id', function (req, res) {
                   if(err){
                     res.redirect(302, '/');
                   } else {
+                    req.session.flash.message = "Vote Submitted";
                     res.redirect(302, '/article/view/' + article._id);
                   }
                 });
@@ -220,6 +222,7 @@ router.patch('/:id', function (req, res) {
           } else {
               /* gotta show the edit, maybe compare against original? voting system*/
             console.log(article);
+            req.session.flash.message = "EDIT Submitted";
             res.redirect(302, '/article/view/' + editedarticle._id);
           }
         });
