@@ -204,7 +204,7 @@ router.patch('/:id', function (req, res) {
         var edited = req.body.article;
         var now = new Date();
         edited.date = now.toUTCString();
-        article.edits.unshift({ //this means the most recent is always index:0
+        article.edits.push({ //queue
           editor: req.session.user.name,
           editorId: req.session.user._id,
           editedArticle: edited,
