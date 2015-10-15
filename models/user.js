@@ -8,7 +8,7 @@ var toLower = function (v) {
 var userSchema = new Schema({
   name: String ,
   email: { type: String, index: { unique: true }, validate: /\u0040/,  set: toLower} ,
-  password: String,
+  passwordHash: String,
   dateCreated: { type: Date, default: Date.now },
   location: { type: String, set: toLower } ,
   written: Number,
