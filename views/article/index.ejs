@@ -1,12 +1,16 @@
 <div id="index">
   <%for(i=0;i<locals.categories.length;i++){%>
-    <section id="<%=locals.categories[i]%>" class="index-category"><%=locals.categories[i]%>    </section>
-    <div class="index-article-container">
-      <%for(j=0;j<articles.length;j++){if(articles[j].category === locals.categories[i]){%>
-        <div class="index-article" style="order:-<%=articles[j].voters.length%>">
-          <a href="/article/view/<%=articles[j]._id%>"><%=articles[j].title%></a>
-        </div>
-      <%}}%>
+    <div class="index-container">
+      <section id="<%=locals.categories[i]%>" class="index-category"><%=locals.categories[i]%>    </section>
+      <div class="index-article-container">
+        <%for(j=0;j<articles.length;j++){if(articles[j].category === locals.categories[i]){%>
+          <div class="voters-<%=articles[j].voters.length%> <%if(articles[j].voters.indexOf(user._id) !== -1){var classThing = "user-voted"}else{var classThing = ""}%><%=classThing%>" style="order:-<%=articles[j].voters.length%>">
+            <a href="/article/view/<%=articles[j]._id%>"><%=articles[j].title%></a>
+          </div>
+        <%}}%>
+      </div>
     </div>
   <%}%>
 </div>
+
+<script src="/scripts/index.js"></script>
