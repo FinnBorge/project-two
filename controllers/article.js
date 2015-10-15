@@ -230,7 +230,7 @@ router.patch('/:id', function (req, res) {
 }); /* closes route */
 
 router.delete('/:id', function (req, res) {
-  if(req.session.user.admin){
+  if(true){
     Article.findById(req.params.id, function(err, article){
       if(err){
         console.log("Error");
