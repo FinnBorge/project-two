@@ -66,12 +66,14 @@ router.post('/login', function(req, res, next){
     console.log(dbuser);
     if(err){
       res.redirect(302, '/welcome');//flash error
+      req.session.flash.message = "Some error has occured";
     } else if (password === dbuser.password){
       console.log("Log-in successful");
+      req.session.flash.message = "Log-in successful";
       req.session.user = dbuser; //hide pw
       res.redirect(302, '/user/view/' + dbuser._id);
     } else {
-      console.log("email and password do not match");
+      req.session.flash.message = "Email and password do not match";
       //track attempts?
     }
   });
@@ -79,6 +81,7 @@ router.post('/login', function(req, res, next){
 
 router.get('/logout', function(req, res, next){
   req.session.user = null;
+  req.session.flash.message = "Thank you for logging out";
   res.redirect(302, '/');
 });
 

@@ -47,7 +47,14 @@ server.use(function (req, res, next) {
     res.locals.flash  = req.session.flash || {};
     req.session.flash = {};
     next();
-  });
+});
+
+server.use(function(req, res, next){
+  if(req.session.user){
+    res.locals.user = req.session.user;
+  }
+  next();
+});
 /* Custom Middleware End */
 
 
