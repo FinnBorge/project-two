@@ -2,6 +2,48 @@ var express = require('express'),
     router  = express.Router(),
     Article = require('../models/article.js');
 
+
+/* Fancy Functions */
+var upvoteCap = 5;
+var downvoteCap = 2;
+
+var voteThreshold = function(article){
+  var editUpvotes = article.edits[0].meta.upvotes;
+  var editDownvotes = article.edits[0].meta.downvotes;
+  if(editUpvotes >= upvoteCap){
+    var updatedArticle = article;
+    var edited = article.edits[0];
+    var editedArticle = article.edits[0].editedArticle;
+    var updateDate = new Date();
+    updateDate = updateDate.toUTCString();
+    updatedArticle.updated = updateDate;
+    updatedArticle.editor = edited.editor;
+    updatedArticle.editorId = edited.editorId;
+    updatedArticle.title = editedArticle.title;
+    updatedArticle.tags = editedArticle.tags;
+    updatedArticle.category = editedArticle.category;
+    updatedArticle.body = editedArticle.body;
+    updatedArticle.meta = {
+      upvotes: 0,
+      downvotes: 0
+    };
+    updatedArticle.voters = [];
+    updatedArticle.edits = [];
+    return updateArticle;
+  } else if(editDownvotes >= downvoteCap) {
+    article.edits.shift();
+    article.voters = [];
+    article.meta.upvotes = 0;
+    article.meta.downvotes = 0;
+    return article;
+  } else {
+    return article;
+  }
+};
+
+
+/* Fancy Functions END */
+
 router.get('/', function(req, res){
   Article.find({}, function(err, allArticles){
     if(err){
@@ -131,6 +173,7 @@ router.post('/talk/:id', function (req, res) {
                 }
                 published.voters.push(req.session.user._id);
                 /* update article if good enough vote count */
+                published = voteThreshold(published);
                 published.save(function(err, article){
                   if(err){
                     res.redirect(302, '/');

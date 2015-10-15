@@ -9,6 +9,8 @@ var mongoose = require('mongoose'),
 var articleSchema = new Schema({
   author: String,
   authorId: String,
+  editor: String,
+  editorId: String,
   title: {type: String, index: { unique: true }},
   date: String,
   updated: String,
