@@ -42,6 +42,13 @@ server.use(session({
   saveUninitialized: true,
 }));
 /* Custom Middleware */
+/*NEW FRIDAY*/
+server.use(function(req, res, next){
+  tags = config.tags;
+  categories = config.categories;
+  next();
+});
+
 server.use(localConstants);
 
 server.use(function (req, res, next) {
@@ -50,12 +57,7 @@ server.use(function (req, res, next) {
     next();
 });
 
-/*NEW FRIDAY*/
-server.use(function(req, res, next){
-  var tags = config.tags;
-  var categories = config.categories;
-  next();
-});
+
 
 server.use(function(req, res, next){
   if(req.session.user){
