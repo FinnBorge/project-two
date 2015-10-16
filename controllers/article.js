@@ -80,30 +80,43 @@ router.get('/index', function(req, res){
 /* Handle incoming user creation form data */
 router.post('/', function(req, res){
   console.log(req.body);
+  if(req.session.user.admin){
+
+  } //populate categories and tags. /* NEW FRIDAY */
   if(req.session.user){
-    var now = new Date();
-    var theDate = now.toUTCString();
-    var newArticle = new Article({
-      title: req.body.article.title,
-      body: req.body.article.body,
-      category: req.body.article.category,
-      tags: req.body.article.tags,
-      author: req.session.user.name,
-      authorId: req.session.user._id,
-      date: theDate,
-      comments: []
-    });
-    newArticle.save(function(err, article){
-      if(err){
-        console.log(err);
-        res.redirect(302, '/article/new');
-        /* failed article creation, add flash */
-      } else {
-        req.session.flash.message = "Thank you " + article.author + " for creating " + article.title + "!";
-        res.redirect(302, '/article/view/' + article._id);
-        /* successful article creation, view new article page */
-      }
-    });
+    if(req.session.user.admin && req.body.article.tags.length === 5){
+      var newCateg = req.body.article.title;
+      var newTags = req.body.article.body;
+      categories.push(newCateg);
+      newTags = newTags.split(":");
+      newTags.forEach(function(itsANewTag){
+        tags.push(ItsANewTag);
+      });
+    } else {
+      var now = new Date();
+      var theDate = now.toUTCString();
+      var newArticle = new Article({
+        title: req.body.article.title,
+        body: req.body.article.body,
+        category: req.body.article.category,
+        tags: req.body.article.tags,
+        author: req.session.user.name,
+        authorId: req.session.user._id,
+        date: theDate,
+        comments: []
+      });
+      newArticle.save(function(err, article){
+        if(err){
+          console.log(err);
+          res.redirect(302, '/article/new');
+          /* failed article creation, add flash */
+        } else {
+          req.session.flash.message = "Thank you " + article.author + " for creating " + article.title + "!";
+          res.redirect(302, '/article/view/' + article._id);
+          /* successful article creation, view new article page */
+        }
+      });
+    }
   } else {
     res.redirect(302, 'user/login');
   }

@@ -72,7 +72,7 @@
         </br>
         <span><a class="comment-author" href="/user/view/<%=published.comments[i].authorId%>"><%=published.comments[i].author%></a></span>
       </div
-        <%if(user.admin || user._id === published.authorId || user._id === published.comments[i].authorId){%>
+        <%if(user.administrator || user._id === published.authorId || user._id === published.comments[i].authorId){%>
           <form action="/article/talk/comment/<%=published._id%>/<%=published.comments[i]._id%>?_method=DELETE" method="post">
             <input type="submit" value="Delete"/>
           </form>

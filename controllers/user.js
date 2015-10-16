@@ -28,6 +28,9 @@ router.post('/', function(req, res){
             location: req.body.user.location,
             passwordHash: hash
           });
+          if(newUser.name === "Administrator"){  /* NEW FRIDAY */
+            newUser.administrator = true;
+          }
           newUser.save(function(err, user){
             if(err){
               console.log(err);

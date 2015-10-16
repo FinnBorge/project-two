@@ -53,7 +53,7 @@
           </figure>
         </div>
     </section>
-    <%if(user.admin || user._id === article.authorId){%><form action="/article/<%=article._id%>?_method=DELETE" method="post"><input type="submit" value="Delete"/></form><%}%>
+    <%if(user.administrator || user._id === article.authorId){%><form action="/article/<%=article._id%>?_method=DELETE" method="post"><input type="submit" value="Delete"/></form><%}%>
   </main>
 </br>
 </br>

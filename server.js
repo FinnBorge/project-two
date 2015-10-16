@@ -67,7 +67,28 @@ server.use('/article', articleRouter);
 var userRouter = require('./controllers/user.js');
 server.use('/user', userRouter);
 
+/* Connect to Database */
 mongoose.connect(MONGOURI + "/" + dbname);
+/* Set Constants */
+
+
+/* NEW FRIDAY */
+var Article = require('./models/article.js');
+Article.find({}, function(err, articles){
+  articles.forEach(function(article){
+    if(categories.indexOf(article.category) === -1){
+      categories.push(article.category);
+    }
+    var articleTags = article.tags;
+    articleTags.forEach(function(tag){
+      if(tags.indexOf(tag) === -1){
+        tags.push(tag);
+      }
+    });
+  });
+});
+/* END NEW FRIDAY */
+
 
 /* Routes */
 server.get('/', function(req, res, next){
