@@ -1,6 +1,7 @@
 var express = require('express'),
     router  = express.Router(),
-    Article = require('../models/article.js');
+    Article = require('../models/article.js'),
+    config = require('../config/config.js');
 
 
 /* Fancy Functions */
@@ -84,14 +85,16 @@ router.post('/', function(req, res){
 
   } //populate categories and tags. /* NEW FRIDAY */
   if(req.session.user){
-    if(req.session.user.admin && req.body.article.tags.length === 5){
+    if(req.session.user.administrator && req.body.article.tags.length === 5){
       var newCateg = req.body.article.title;
       var newTags = req.body.article.body;
-      categories.push(newCateg);
+      config.categories.push(newCateg);
       newTags = newTags.split(":");
       newTags.forEach(function(itsANewTag){
-        tags.push(ItsANewTag);
+        config.tags.push(itsANewTag);
       });
+      req.session.flash.message = "Thank you!";
+      res.redirect(302, '/article/index/');
     } else {
       var now = new Date();
       var theDate = now.toUTCString();

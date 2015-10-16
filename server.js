@@ -16,8 +16,9 @@ var express  = require('express'),
     //bcrypt = require('bcrypt');
 
 /* Constant Handlers */
-var tags = ["Wood", "Aluminum", "Copper", "Tin", "Bronze", "Iron", "Gold", "Alumite", "Steel"];
-var categories = ["Crunchy", "Bunchy", "Munchy"];
+var config = require('./config/config.js');
+var tags = config.tags;
+var categories = config.categories;
 var uniqueTags = []; //stretch goal, populate with custom tags that have been used once
 var localConstants = function(req, res, next){
     res.locals.tags = tags;
@@ -49,6 +50,13 @@ server.use(function (req, res, next) {
     next();
 });
 
+/*NEW FRIDAY*/
+server.use(function(req, res, next){
+  var tags = config.tags;
+  var categories = config.categories;
+  next();
+});
+
 server.use(function(req, res, next){
   if(req.session.user){
     res.locals.user = req.session.user;
@@ -77,12 +85,12 @@ var Article = require('./models/article.js');
 Article.find({}, function(err, articles){
   articles.forEach(function(article){
     if(categories.indexOf(article.category) === -1){
-      categories.push(article.category);
+      config.categories.push(article.category);
     }
     var articleTags = article.tags;
     articleTags.forEach(function(tag){
       if(tags.indexOf(tag) === -1){
-        tags.push(tag);
+        config.tags.push(tag);
       }
     });
   });
