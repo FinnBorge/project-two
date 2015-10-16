@@ -311,6 +311,7 @@ form {
   background-color: green;
   color: white;
   transition: transform 0.6s;
+  margin: 0 auto;
 }
 
 .comment-clicker:hover{
@@ -327,7 +328,8 @@ form {
   margin: 0 auto;
   width: 80vw;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  min-height: 70px;
 }
 
 .comment form{
@@ -336,6 +338,18 @@ form {
   justify-content: center;
 }
 
+.comment-info{
+  align-items: flex-start;
+}
+
+.comment-date{
+  font-size: .8em
+}
+
+a.comment-author{
+  color: white;
+  font-size: 18px;
+}
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>
       TALK.EJS styling end
 >>>>>>>>>>>>>>>>>>>>>>>>>>>> */

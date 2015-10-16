@@ -90,7 +90,8 @@ router.post('/', function(req, res){
       tags: req.body.article.tags,
       author: req.session.user.name,
       authorId: req.session.user._id,
-      date: theDate
+      date: theDate,
+      comments: []
     });
     newArticle.save(function(err, article){
       if(err){
@@ -150,6 +151,26 @@ router.post('/talk/comment/:id', function(req, res){
       console.log(err);
     } else {
       res.redirect(302, '/article/talk/' + article._id);
+    }
+  });
+});
+
+router.delete('/talk/comment/:id/:commentId', function(req, res){
+  Article.findById(req.params.id, function(err, article){
+    if(err){
+      console.log(err);
+    }else{
+      var target = null;
+      var comments = article.comments;
+      for(i=0;i<comments.length;i++){
+        var targId = req.params.commentId;
+        if(comments[i]._id === targId){
+          comments.splice(i, 1);
+        }
+      }
+      Article.findByIdAndUpdate(req.params.id, {$set: {"comments": comments}}, function(){
+        res.redirect(302, '/article/talk/' + article._id);
+      });
     }
   });
 });

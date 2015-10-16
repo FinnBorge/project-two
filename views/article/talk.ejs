@@ -67,9 +67,17 @@
     </div>
   <%for(i=0;i<published.comments.length && i<5;i++){%>
     <div class="comment">
-      <span><a href="/user/view/<%=published.comments[i].authorId%>"><%=published.comments[i].author%></a></span>
-      <span><%=published.comments[i].date%></span>
-      <span><%=published.comments[i].body%></span>
+      <div class="comment-info">
+        <span class="comment-date"><%=published.comments[i].date%></span>
+        </br>
+        <span><a class="comment-author" href="/user/view/<%=published.comments[i].authorId%>"><%=published.comments[i].author%></a></span>
+      </div
+        <%if(user.admin || user._id === published.authorId || user._id === published.comments[i].authorId){%>
+          <form action="/article/talk/comment/<%=published._id%>/<%=published.comments[i]._id%>?_method=DELETE" method="post">
+            <input type="submit" value="Delete"/>
+          </form>
+        <%}%>
+      <span class="comment-body"><%=published.comments[i].body%></span>
     </div>
   <%}%>
 </section>
